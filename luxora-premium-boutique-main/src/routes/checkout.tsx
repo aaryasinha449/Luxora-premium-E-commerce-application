@@ -55,7 +55,7 @@ function Checkout() {
 
   const orderMutation = useMutation({
     mutationFn: async (payload: any) => {
-      const res = await luxeFetch("http://localhost:5000/api/orders", {
+      const res = await luxeFetch("https://luxora-premium-e-commerce-application.onrender.com/api/orders", {
         method: "POST",
         body: JSON.stringify(payload),
       });
@@ -121,7 +121,7 @@ function Checkout() {
 
     try {
       // Initiate Razorpay Order on Backend (USD)
-      const rzpRes = await luxeFetch("http://localhost:5000/api/payments/razorpay-order", {
+      const rzpRes = await luxeFetch("https://luxora-premium-e-commerce-application.onrender.com/api/payments/razorpay-order", {
         method: "POST",
         body: JSON.stringify({ amountInUSD: total + shipping }),
       });

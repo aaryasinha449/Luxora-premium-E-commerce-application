@@ -10,7 +10,7 @@ import { type BackendProduct, mapBackendProduct } from "@/lib/productMapper";
 export const productsQueryOptions = queryOptions({
   queryKey: ["products"],
   queryFn: async (): Promise<Product[]> => {
-    const res = await fetch("http://localhost:5000/api/products");
+    const res = await fetch("https://luxora-premium-e-commerce-application.onrender.com/api/products");
     if (!res.ok) {
       throw new Error("Failed to fetch products from backend API");
     }

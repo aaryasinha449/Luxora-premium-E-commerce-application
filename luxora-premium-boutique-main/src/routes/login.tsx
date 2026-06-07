@@ -22,7 +22,7 @@ function Login() {
 
   const loginMutation = useMutation({
     mutationFn: async () => {
-      const res = await luxeFetch("http://localhost:5000/api/auth/login", {
+      const res = await luxeFetch("https://luxora-premium-e-commerce-application.onrender.com/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });

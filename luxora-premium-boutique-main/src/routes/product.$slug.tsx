@@ -14,7 +14,7 @@ const productDetailQueryOptions = (slug: string) =>
   queryOptions({
     queryKey: ["product", slug],
     queryFn: async (): Promise<Product> => {
-      const res = await fetch(`http://localhost:5000/api/products/slug/${slug}`);
+      const res = await fetch(`https://luxora-premium-e-commerce-application.onrender.com/api/products/slug/${slug}`);
       if (res.status === 404) {
         throw notFound();
       }

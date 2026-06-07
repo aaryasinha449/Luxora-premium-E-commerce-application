@@ -8,7 +8,7 @@ export const orderDetailQueryOptions = (id: string) =>
   queryOptions({
     queryKey: ["order", id],
     queryFn: async (): Promise<any> => {
-      const res = await luxeFetch(`http://localhost:5000/api/orders/${id}`);
+      const res = await luxeFetch(`https://luxora-premium-e-commerce-application.onrender.com/api/orders/${id}`);
       if (res.status === 404) {
         throw notFound();
       }

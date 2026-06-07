@@ -7,7 +7,7 @@ import { luxeFetch } from "@/lib/api/client";
 export const ordersQueryOptions = queryOptions({
   queryKey: ["orders"],
   queryFn: async (): Promise<any[]> => {
-    const res = await luxeFetch("http://localhost:5000/api/orders");
+    const res = await luxeFetch("https://luxora-premium-e-commerce-application.onrender.com/api/orders");
     if (!res.ok) {
       throw new Error("Failed to fetch orders from backend");
     }

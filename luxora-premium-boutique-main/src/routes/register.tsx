@@ -21,7 +21,7 @@ function Register() {
 
   const registerMutation = useMutation({
     mutationFn: async () => {
-      const res = await luxeFetch("http://localhost:5000/api/auth/register", {
+      const res = await luxeFetch("https://luxora-premium-e-commerce-application.onrender.com/api/auth/register", {
         method: "POST",
         body: JSON.stringify(form),
       });
