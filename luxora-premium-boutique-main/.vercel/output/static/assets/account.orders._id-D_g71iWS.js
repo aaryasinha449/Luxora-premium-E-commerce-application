@@ -1,0 +1,1 @@
+import{j as t}from"./index-NrTTU_nj.js";const n=()=>t.jsx("div",{className:"py-20 text-center",children:t.jsx("p",{className:"font-serif text-2xl",children:"Order not found."})});export{n as notFoundComponent};

@@ -1,0 +1,1 @@
+import{j as e,L as n}from"./index-NrTTU_nj.js";const t=()=>e.jsxs("div",{className:"container-luxe py-32 text-center",children:[e.jsx("h1",{className:"font-serif text-4xl",children:"Piece no longer available"}),e.jsx(n,{to:"/shop",className:"mt-6 inline-block link-underline eyebrow",children:"Return to shop"})]});export{t as notFoundComponent};
