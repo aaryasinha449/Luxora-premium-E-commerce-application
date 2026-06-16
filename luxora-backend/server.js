@@ -12,17 +12,24 @@ const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 
-// Middleware
+// ---------------------------------------------------------------------------
+// CORS — allow specific origins only (no wildcard in production)
+// Add any additional Vercel preview URLs or custom domains here as needed.
+// ---------------------------------------------------------------------------
 const ALLOWED_ORIGINS = [
+  // ── Production ──────────────────────────────────────────────────────────
+  "https://luxora-premium-e-commerce-applicati.vercel.app",
+
+  // ── Local development ────────────────────────────────────────────────────
+  "http://localhost:5173",
   "http://localhost:8080",
   "http://localhost:8081",
   "http://localhost:8082",
-  "http://localhost:5173",
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow server-to-server requests (origin is undefined) and whitelisted origins
+    // Allow server-to-server / curl requests (no Origin header) and whitelisted origins
     if (!origin || ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
@@ -30,9 +37,18 @@ const corsOptions = {
       callback(new Error(`CORS policy does not allow origin: ${origin}`));
     }
   },
+  credentials: true,                          // required if frontend sends cookies / Authorization headers
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 200,
 };
+
+// Apply CORS middleware — must be before any route definitions
 app.use(cors(corsOptions));
+
+// Explicitly handle pre-flight OPTIONS requests for all routes
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 // Routes
