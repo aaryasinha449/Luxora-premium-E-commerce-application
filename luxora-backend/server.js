@@ -29,18 +29,24 @@ const ALLOWED_ORIGINS = [
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow server-to-server / curl requests (no Origin header) and whitelisted origins
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.warn(`CORS blocked request from origin: ${origin}`);
-      callback(new Error(`CORS policy does not allow origin: ${origin}`));
+    if (!origin) {
+      return callback(null, true);
     }
+
+    if (
+      ALLOWED_ORIGINS.includes(origin) ||
+      origin.endsWith(".vercel.app")
+    ) {
+      return callback(null, true);
+    }
+
+    console.warn(`CORS blocked request from origin: ${origin}`);
+    callback(new Error(`CORS policy does not allow origin: ${origin}`));
   },
-  credentials: true,                          // required if frontend sends cookies / Authorization headers
+
+  credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200,
 };
 
 // Apply CORS middleware — must be before any route definitions
